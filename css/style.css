@@ -203,12 +203,27 @@ section {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(251, 242, 236, 0.94);
-  backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--color-border);
 }
 
+/*
+  The blur/background live on this separate layer (not on .site-header
+  itself) because `backdrop-filter` on an ancestor creates a new
+  containing block for `position: fixed` descendants — that broke the
+  full-viewport mobile nav, which is nested inside the header for the
+  desktop inline layout.
+*/
+.header-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(251, 242, 236, 0.94);
+  backdrop-filter: blur(6px);
+}
+
 .site-header .container {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -280,11 +295,15 @@ section {
 .main-nav {
   position: fixed;
   inset: 0 0 0 30%;
+  z-index: 95;
   background: var(--color-bg);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 2rem;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 7rem 2rem 2rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   transform: translateX(100%);
   transition: transform var(--transition);
   box-shadow: -10px 0 40px rgba(80, 50, 40, 0.12);
@@ -321,7 +340,7 @@ section {
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--transition);
-  z-index: 99;
+  z-index: 90;
 }
 
 .nav-backdrop.is-open {
@@ -663,6 +682,7 @@ h2 em {
     padding: 0;
     box-shadow: none;
     inset: auto;
+    overflow: visible;
   }
 
   .main-nav ul {
