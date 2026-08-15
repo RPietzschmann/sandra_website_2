@@ -455,6 +455,79 @@ h2 em {
   font-style: italic;
 }
 
+/* ---------- Collection list (expandable details) ---------- */
+.collection-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin: 1.6rem 0;
+  text-align: left;
+}
+
+.collection-item {
+  background: var(--color-surface);
+  border-radius: var(--radius-m);
+  box-shadow: 0 4px 14px rgba(120, 80, 60, 0.06);
+  overflow: hidden;
+}
+
+.collection-item summary {
+  list-style: none !important;
+  cursor: pointer;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.95rem 1.2rem;
+  font-weight: 500;
+  color: var(--color-heading);
+  transition: background var(--transition);
+}
+
+.collection-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.collection-item summary:hover {
+  background: var(--color-bg-alt);
+}
+
+.collection-item[open] summary {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.collection-item-toggle {
+  flex-shrink: 0;
+}
+
+.collection-item-toggle::before {
+  content: '+';
+  display: inline-block;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--color-accent);
+  transition: transform var(--transition);
+}
+
+.collection-item[open] .collection-item-toggle::before {
+  transform: rotate(45deg);
+}
+
+.collection-item-body {
+  padding: 0.2rem 1.2rem 1.2rem;
+}
+
+.collection-item-subtitle {
+  color: var(--color-accent-dark);
+  font-weight: 500;
+  font-style: italic;
+  margin-bottom: 0.6em;
+}
+
+.collection-item-body p:last-child {
+  margin-bottom: 0;
+}
+
 /* ---------- Generic content section ---------- */
 .content-block {
   max-width: 760px;
