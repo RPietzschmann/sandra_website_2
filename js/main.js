@@ -42,6 +42,15 @@
     });
   }
 
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('video[autoplay]').forEach(function (video) {
+      video.removeAttribute('autoplay');
+      video.removeAttribute('loop');
+      video.setAttribute('controls', '');
+      video.pause();
+    });
+  }
+
   var currentPage = document.body.getAttribute('data-page');
   if (currentPage) {
     document.querySelectorAll('.main-nav a, .footer-nav a, .legal-nav a').forEach(function (link) {

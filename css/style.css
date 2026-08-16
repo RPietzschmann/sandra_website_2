@@ -570,6 +570,22 @@ h2 em {
   box-shadow: var(--shadow-soft);
 }
 
+/*
+  forest.mp4 is filmed in portrait (576x1024). Cropped to a landscape
+  box via object-fit so it never towers taller than it is wide on
+  desktop, regardless of the source footage's native orientation.
+*/
+.two-col .col-image video {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center 26%;
+  display: block;
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-soft);
+  background: var(--color-bg-alt);
+}
+
 /* ---------- CTA banner ---------- */
 .cta-banner {
   background: var(--color-accent-light);
@@ -616,6 +632,16 @@ h2 em {
   padding: 0.7rem 1rem;
   border-radius: var(--radius-m);
   font-size: 0.95rem;
+}
+
+.contact-list a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.contact-list a:hover {
+  color: var(--color-accent-dark);
 }
 
 .footer-cta {
@@ -785,7 +811,7 @@ h2 em {
   }
 
   .hero-content {
-    padding-right: 2rem;
+    padding-left: 2rem;
   }
 
   .card-grid {

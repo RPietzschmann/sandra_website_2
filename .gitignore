@@ -3,3 +3,7 @@ published/
 .~lock.*
 Thumbs.db
 .DS_Store
+
+# Local-only dev preview server (not part of the deployed site)
+_devserver.js
+.claude/launch.json
